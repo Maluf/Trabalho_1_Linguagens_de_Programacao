@@ -5,19 +5,14 @@ package org.xtext.example.ruby.ruby.impl;
 
 import java.util.Collection;
 
-import org.eclipse.emf.common.notify.NotificationChain;
-
 import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
-import org.eclipse.emf.ecore.util.EObjectContainmentEList;
-import org.eclipse.emf.ecore.util.InternalEList;
+import org.eclipse.emf.ecore.util.EDataTypeEList;
 
-import org.xtext.example.ruby.ruby.Greeting;
 import org.xtext.example.ruby.ruby.Model;
 import org.xtext.example.ruby.ruby.RubyPackage;
 
@@ -29,7 +24,7 @@ import org.xtext.example.ruby.ruby.RubyPackage;
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.ruby.ruby.impl.ModelImpl#getGreetings <em>Greetings</em>}</li>
+ *   <li>{@link org.xtext.example.ruby.ruby.impl.ModelImpl#getBegin <em>Begin</em>}</li>
  * </ul>
  *
  * @generated
@@ -37,14 +32,14 @@ import org.xtext.example.ruby.ruby.RubyPackage;
 public class ModelImpl extends MinimalEObjectImpl.Container implements Model
 {
   /**
-   * The cached value of the '{@link #getGreetings() <em>Greetings</em>}' containment reference list.
+   * The cached value of the '{@link #getBegin() <em>Begin</em>}' attribute list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @see #getGreetings()
+   * @see #getBegin()
    * @generated
    * @ordered
    */
-  protected EList<Greeting> greetings;
+  protected EList<String> begin;
 
   /**
    * <!-- begin-user-doc -->
@@ -72,29 +67,13 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
    * <!-- end-user-doc -->
    * @generated
    */
-  public EList<Greeting> getGreetings()
+  public EList<String> getBegin()
   {
-    if (greetings == null)
+    if (begin == null)
     {
-      greetings = new EObjectContainmentEList<Greeting>(Greeting.class, this, RubyPackage.MODEL__GREETINGS);
+      begin = new EDataTypeEList<String>(String.class, this, RubyPackage.MODEL__BEGIN);
     }
-    return greetings;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs)
-  {
-    switch (featureID)
-    {
-      case RubyPackage.MODEL__GREETINGS:
-        return ((InternalEList<?>)getGreetings()).basicRemove(otherEnd, msgs);
-    }
-    return super.eInverseRemove(otherEnd, featureID, msgs);
+    return begin;
   }
 
   /**
@@ -107,8 +86,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case RubyPackage.MODEL__GREETINGS:
-        return getGreetings();
+      case RubyPackage.MODEL__BEGIN:
+        return getBegin();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -124,9 +103,9 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case RubyPackage.MODEL__GREETINGS:
-        getGreetings().clear();
-        getGreetings().addAll((Collection<? extends Greeting>)newValue);
+      case RubyPackage.MODEL__BEGIN:
+        getBegin().clear();
+        getBegin().addAll((Collection<? extends String>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -142,8 +121,8 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case RubyPackage.MODEL__GREETINGS:
-        getGreetings().clear();
+      case RubyPackage.MODEL__BEGIN:
+        getBegin().clear();
         return;
     }
     super.eUnset(featureID);
@@ -159,10 +138,27 @@ public class ModelImpl extends MinimalEObjectImpl.Container implements Model
   {
     switch (featureID)
     {
-      case RubyPackage.MODEL__GREETINGS:
-        return greetings != null && !greetings.isEmpty();
+      case RubyPackage.MODEL__BEGIN:
+        return begin != null && !begin.isEmpty();
     }
     return super.eIsSet(featureID);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  @Override
+  public String toString()
+  {
+    if (eIsProxy()) return super.toString();
+
+    StringBuffer result = new StringBuffer(super.toString());
+    result.append(" (begin: ");
+    result.append(begin);
+    result.append(')');
+    return result.toString();
   }
 
 } //ModelImpl

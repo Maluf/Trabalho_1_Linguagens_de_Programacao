@@ -7,10 +7,7 @@
   <genPackages prefix="Ruby" basePackage="org.xtext.example.ruby" disposableProviderFactory="true"
       fileExtensions="r" ecorePackage="Ruby.ecore#/">
     <genClasses ecoreClass="Ruby.ecore#//Model">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Ruby.ecore#//Model/greetings"/>
-    </genClasses>
-    <genClasses ecoreClass="Ruby.ecore#//Greeting">
-      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Ruby.ecore#//Greeting/name"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Ruby.ecore#//Model/begin"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

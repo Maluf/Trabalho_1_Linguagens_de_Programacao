@@ -66,7 +66,6 @@ public class RubyFactoryImpl extends EFactoryImpl implements RubyFactory
     switch (eClass.getClassifierID())
     {
       case RubyPackage.MODEL: return createModel();
-      case RubyPackage.GREETING: return createGreeting();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -81,17 +80,6 @@ public class RubyFactoryImpl extends EFactoryImpl implements RubyFactory
   {
     ModelImpl model = new ModelImpl();
     return model;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Greeting createGreeting()
-  {
-    GreetingImpl greeting = new GreetingImpl();
-    return greeting;
   }
 
   /**

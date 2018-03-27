@@ -3,7 +3,21 @@ grammar org.xtext.example.ruby.Ruby with org.eclipse.xtext.common.Terminals
 generate ruby "http://www.xtext.org/example/ruby/Ruby"
 
 Model:
-	greetings+=Greeting*;
+	begin+=Begin*;
 	
-Greeting:
-	'Hello' name=ID '!';
+Begin:
+	'begin' COMMANDS? (Begin | Rescue | Ensure)? End;
+
+Rescue:
+	'rescue' COMMANDS? (Begin | Rescue | Ensure)?;
+	
+Ensure:
+	'ensure' COMMANDS? (Begin | Rescue | Ensure)?;
+
+End:
+	'end';	
+
+// Aceita qualquer coisa
+terminal COMMANDS: 
+	('a'..'z'| 'A'..'Z'|'0'..'9'| ' ' | "'" | ";" | "=" | "." | "<" | '>' | '#')*
+;

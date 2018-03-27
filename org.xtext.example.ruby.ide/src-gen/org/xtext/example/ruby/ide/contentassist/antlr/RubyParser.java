@@ -31,9 +31,13 @@ public class RubyParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getGreetingAccess().getGroup(), "rule__Greeting__Group__0");
-					put(grammarAccess.getModelAccess().getGreetingsAssignment(), "rule__Model__GreetingsAssignment");
-					put(grammarAccess.getGreetingAccess().getNameAssignment_1(), "rule__Greeting__NameAssignment_1");
+					put(grammarAccess.getBeginAccess().getAlternatives_2(), "rule__Begin__Alternatives_2");
+					put(grammarAccess.getRescueAccess().getAlternatives_2(), "rule__Rescue__Alternatives_2");
+					put(grammarAccess.getEnsureAccess().getAlternatives_2(), "rule__Ensure__Alternatives_2");
+					put(grammarAccess.getBeginAccess().getGroup(), "rule__Begin__Group__0");
+					put(grammarAccess.getRescueAccess().getGroup(), "rule__Rescue__Group__0");
+					put(grammarAccess.getEnsureAccess().getGroup(), "rule__Ensure__Group__0");
+					put(grammarAccess.getModelAccess().getBeginAssignment(), "rule__Model__BeginAssignment");
 				}
 			};
 		}

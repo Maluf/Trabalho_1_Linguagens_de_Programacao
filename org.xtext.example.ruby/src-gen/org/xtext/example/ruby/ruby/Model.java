@@ -16,7 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.xtext.example.ruby.ruby.Model#getGreetings <em>Greetings</em>}</li>
+ *   <li>{@link org.xtext.example.ruby.ruby.Model#getBegin <em>Begin</em>}</li>
  * </ul>
  *
  * @see org.xtext.example.ruby.ruby.RubyPackage#getModel()
@@ -26,19 +26,19 @@ import org.eclipse.emf.ecore.EObject;
 public interface Model extends EObject
 {
   /**
-   * Returns the value of the '<em><b>Greetings</b></em>' containment reference list.
-   * The list contents are of type {@link org.xtext.example.ruby.ruby.Greeting}.
+   * Returns the value of the '<em><b>Begin</b></em>' attribute list.
+   * The list contents are of type {@link java.lang.String}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Greetings</em>' containment reference list isn't clear,
+   * If the meaning of the '<em>Begin</em>' attribute list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Greetings</em>' containment reference list.
-   * @see org.xtext.example.ruby.ruby.RubyPackage#getModel_Greetings()
-   * @model containment="true"
+   * @return the value of the '<em>Begin</em>' attribute list.
+   * @see org.xtext.example.ruby.ruby.RubyPackage#getModel_Begin()
+   * @model unique="false"
    * @generated
    */
-  EList<Greeting> getGreetings();
+  EList<String> getBegin();
 
 } // Model

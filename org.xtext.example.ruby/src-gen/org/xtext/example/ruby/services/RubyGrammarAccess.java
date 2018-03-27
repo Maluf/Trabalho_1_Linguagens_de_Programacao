@@ -6,6 +6,7 @@ package org.xtext.example.ruby.services;
 import com.google.inject.Inject;
 import com.google.inject.Singleton;
 import java.util.List;
+import org.eclipse.xtext.Alternatives;
 import org.eclipse.xtext.Assignment;
 import org.eclipse.xtext.Grammar;
 import org.eclipse.xtext.GrammarUtil;
@@ -23,50 +24,147 @@ public class RubyGrammarAccess extends AbstractGrammarElementFinder {
 	
 	public class ModelElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.ruby.Ruby.Model");
-		private final Assignment cGreetingsAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cGreetingsGreetingParserRuleCall_0 = (RuleCall)cGreetingsAssignment.eContents().get(0);
+		private final Assignment cBeginAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cBeginBeginParserRuleCall_0 = (RuleCall)cBeginAssignment.eContents().get(0);
 		
 		//Model:
-		//	greetings+=Greeting*;
+		//	begin+=Begin*;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//greetings+=Greeting*
-		public Assignment getGreetingsAssignment() { return cGreetingsAssignment; }
+		//begin+=Begin*
+		public Assignment getBeginAssignment() { return cBeginAssignment; }
 		
-		//Greeting
-		public RuleCall getGreetingsGreetingParserRuleCall_0() { return cGreetingsGreetingParserRuleCall_0; }
+		//Begin
+		public RuleCall getBeginBeginParserRuleCall_0() { return cBeginBeginParserRuleCall_0; }
 	}
-	public class GreetingElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.ruby.Ruby.Greeting");
+	public class BeginElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.ruby.Ruby.Begin");
 		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Keyword cHelloKeyword_0 = (Keyword)cGroup.eContents().get(0);
-		private final Assignment cNameAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cNameIDTerminalRuleCall_1_0 = (RuleCall)cNameAssignment_1.eContents().get(0);
-		private final Keyword cExclamationMarkKeyword_2 = (Keyword)cGroup.eContents().get(2);
+		private final Keyword cBeginKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cCOMMANDSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final RuleCall cBeginParserRuleCall_2_0 = (RuleCall)cAlternatives_2.eContents().get(0);
+		private final RuleCall cRescueParserRuleCall_2_1 = (RuleCall)cAlternatives_2.eContents().get(1);
+		private final RuleCall cEnsureParserRuleCall_2_2 = (RuleCall)cAlternatives_2.eContents().get(2);
+		private final RuleCall cEndParserRuleCall_3 = (RuleCall)cGroup.eContents().get(3);
 		
-		//Greeting:
-		//	'Hello' name=ID '!';
+		//Begin:
+		//	'begin' COMMANDS? (Begin | Rescue | Ensure)? End;
 		@Override public ParserRule getRule() { return rule; }
 		
-		//'Hello' name=ID '!'
+		//'begin' COMMANDS? (Begin | Rescue | Ensure)? End
 		public Group getGroup() { return cGroup; }
 		
-		//'Hello'
-		public Keyword getHelloKeyword_0() { return cHelloKeyword_0; }
+		//'begin'
+		public Keyword getBeginKeyword_0() { return cBeginKeyword_0; }
 		
-		//name=ID
-		public Assignment getNameAssignment_1() { return cNameAssignment_1; }
+		//COMMANDS?
+		public RuleCall getCOMMANDSTerminalRuleCall_1() { return cCOMMANDSTerminalRuleCall_1; }
 		
-		//ID
-		public RuleCall getNameIDTerminalRuleCall_1_0() { return cNameIDTerminalRuleCall_1_0; }
+		//(Begin | Rescue | Ensure)?
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
 		
-		//'!'
-		public Keyword getExclamationMarkKeyword_2() { return cExclamationMarkKeyword_2; }
+		//Begin
+		public RuleCall getBeginParserRuleCall_2_0() { return cBeginParserRuleCall_2_0; }
+		
+		//Rescue
+		public RuleCall getRescueParserRuleCall_2_1() { return cRescueParserRuleCall_2_1; }
+		
+		//Ensure
+		public RuleCall getEnsureParserRuleCall_2_2() { return cEnsureParserRuleCall_2_2; }
+		
+		//End
+		public RuleCall getEndParserRuleCall_3() { return cEndParserRuleCall_3; }
+	}
+	public class RescueElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.ruby.Ruby.Rescue");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cRescueKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cCOMMANDSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final RuleCall cBeginParserRuleCall_2_0 = (RuleCall)cAlternatives_2.eContents().get(0);
+		private final RuleCall cRescueParserRuleCall_2_1 = (RuleCall)cAlternatives_2.eContents().get(1);
+		private final RuleCall cEnsureParserRuleCall_2_2 = (RuleCall)cAlternatives_2.eContents().get(2);
+		
+		//Rescue:
+		//	'rescue' COMMANDS? (Begin | Rescue | Ensure)?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'rescue' COMMANDS? (Begin | Rescue | Ensure)?
+		public Group getGroup() { return cGroup; }
+		
+		//'rescue'
+		public Keyword getRescueKeyword_0() { return cRescueKeyword_0; }
+		
+		//COMMANDS?
+		public RuleCall getCOMMANDSTerminalRuleCall_1() { return cCOMMANDSTerminalRuleCall_1; }
+		
+		//(Begin | Rescue | Ensure)?
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//Begin
+		public RuleCall getBeginParserRuleCall_2_0() { return cBeginParserRuleCall_2_0; }
+		
+		//Rescue
+		public RuleCall getRescueParserRuleCall_2_1() { return cRescueParserRuleCall_2_1; }
+		
+		//Ensure
+		public RuleCall getEnsureParserRuleCall_2_2() { return cEnsureParserRuleCall_2_2; }
+	}
+	public class EnsureElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.ruby.Ruby.Ensure");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cEnsureKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final RuleCall cCOMMANDSTerminalRuleCall_1 = (RuleCall)cGroup.eContents().get(1);
+		private final Alternatives cAlternatives_2 = (Alternatives)cGroup.eContents().get(2);
+		private final RuleCall cBeginParserRuleCall_2_0 = (RuleCall)cAlternatives_2.eContents().get(0);
+		private final RuleCall cRescueParserRuleCall_2_1 = (RuleCall)cAlternatives_2.eContents().get(1);
+		private final RuleCall cEnsureParserRuleCall_2_2 = (RuleCall)cAlternatives_2.eContents().get(2);
+		
+		//Ensure:
+		//	'ensure' COMMANDS? (Begin | Rescue | Ensure)?;
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'ensure' COMMANDS? (Begin | Rescue | Ensure)?
+		public Group getGroup() { return cGroup; }
+		
+		//'ensure'
+		public Keyword getEnsureKeyword_0() { return cEnsureKeyword_0; }
+		
+		//COMMANDS?
+		public RuleCall getCOMMANDSTerminalRuleCall_1() { return cCOMMANDSTerminalRuleCall_1; }
+		
+		//(Begin | Rescue | Ensure)?
+		public Alternatives getAlternatives_2() { return cAlternatives_2; }
+		
+		//Begin
+		public RuleCall getBeginParserRuleCall_2_0() { return cBeginParserRuleCall_2_0; }
+		
+		//Rescue
+		public RuleCall getRescueParserRuleCall_2_1() { return cRescueParserRuleCall_2_1; }
+		
+		//Ensure
+		public RuleCall getEnsureParserRuleCall_2_2() { return cEnsureParserRuleCall_2_2; }
+	}
+	public class EndElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.ruby.Ruby.End");
+		private final Keyword cEndKeyword = (Keyword)rule.eContents().get(1);
+		
+		//End:
+		//	'end';
+		@Override public ParserRule getRule() { return rule; }
+		
+		//'end'
+		public Keyword getEndKeyword() { return cEndKeyword; }
 	}
 	
 	
 	private final ModelElements pModel;
-	private final GreetingElements pGreeting;
+	private final BeginElements pBegin;
+	private final RescueElements pRescue;
+	private final EnsureElements pEnsure;
+	private final EndElements pEnd;
+	private final TerminalRule tCOMMANDS;
 	
 	private final Grammar grammar;
 	
@@ -78,7 +176,11 @@ public class RubyGrammarAccess extends AbstractGrammarElementFinder {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaTerminals = gaTerminals;
 		this.pModel = new ModelElements();
-		this.pGreeting = new GreetingElements();
+		this.pBegin = new BeginElements();
+		this.pRescue = new RescueElements();
+		this.pEnsure = new EnsureElements();
+		this.pEnd = new EndElements();
+		this.tCOMMANDS = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "org.xtext.example.ruby.Ruby.COMMANDS");
 	}
 	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -109,7 +211,7 @@ public class RubyGrammarAccess extends AbstractGrammarElementFinder {
 
 	
 	//Model:
-	//	greetings+=Greeting*;
+	//	begin+=Begin*;
 	public ModelElements getModelAccess() {
 		return pModel;
 	}
@@ -118,14 +220,50 @@ public class RubyGrammarAccess extends AbstractGrammarElementFinder {
 		return getModelAccess().getRule();
 	}
 	
-	//Greeting:
-	//	'Hello' name=ID '!';
-	public GreetingElements getGreetingAccess() {
-		return pGreeting;
+	//Begin:
+	//	'begin' COMMANDS? (Begin | Rescue | Ensure)? End;
+	public BeginElements getBeginAccess() {
+		return pBegin;
 	}
 	
-	public ParserRule getGreetingRule() {
-		return getGreetingAccess().getRule();
+	public ParserRule getBeginRule() {
+		return getBeginAccess().getRule();
+	}
+	
+	//Rescue:
+	//	'rescue' COMMANDS? (Begin | Rescue | Ensure)?;
+	public RescueElements getRescueAccess() {
+		return pRescue;
+	}
+	
+	public ParserRule getRescueRule() {
+		return getRescueAccess().getRule();
+	}
+	
+	//Ensure:
+	//	'ensure' COMMANDS? (Begin | Rescue | Ensure)?;
+	public EnsureElements getEnsureAccess() {
+		return pEnsure;
+	}
+	
+	public ParserRule getEnsureRule() {
+		return getEnsureAccess().getRule();
+	}
+	
+	//End:
+	//	'end';
+	public EndElements getEndAccess() {
+		return pEnd;
+	}
+	
+	public ParserRule getEndRule() {
+		return getEndAccess().getRule();
+	}
+	
+	//terminal COMMANDS:
+	//	'a'..'z' | 'A'..'Z' | '0'..'9' | ' ' | "''"*;
+	public TerminalRule getCOMMANDSRule() {
+		return tCOMMANDS;
 	}
 	
 	//terminal ID:
