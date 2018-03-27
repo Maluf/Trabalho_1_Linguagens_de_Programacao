@@ -1,0 +1,9 @@
+grammar org.xtext.example.ruby.Ruby with org.eclipse.xtext.common.Terminals
+
+generate ruby "http://www.xtext.org/example/ruby/Ruby"
+
+Model:
+	greetings+=Greeting*;
+	
+Greeting:
+	'Hello' name=ID '!';
