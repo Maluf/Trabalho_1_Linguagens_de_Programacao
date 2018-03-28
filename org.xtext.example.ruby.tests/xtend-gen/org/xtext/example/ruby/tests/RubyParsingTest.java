@@ -4,7 +4,7 @@
 package org.xtext.example.ruby.tests;
 
 import com.google.inject.Inject;
-import org.eclipse.xtend2.lib.StringConcatenation;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.testing.InjectWith;
 import org.eclipse.xtext.testing.XtextRunner;
 import org.eclipse.xtext.testing.util.ParseHelper;
@@ -23,13 +23,60 @@ public class RubyParsingTest {
   private ParseHelper<Model> parseHelper;
   
   @Test
-  public void loadModel() {
+  public void loadModelTest1() {
     try {
-      StringConcatenation _builder = new StringConcatenation();
-      _builder.append("Hello Xtext!");
-      _builder.newLine();
-      final Model result = this.parseHelper.parse(_builder);
+      final Model result = this.parseHelper.parse("\r\n\t\t\tbegin\r\n\t\t\t\tputs \'\'begin\'\'\r\n\t\t\tend\r\n\t\t");
       Assert.assertNotNull(result);
+      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void loadModelTest2() {
+    try {
+      final Model result = this.parseHelper.parse("\r\n\t\t\tbegin\r\n\t\t\t\tputs \'\'begin\'\'\r\n\t\t\trescue\r\n\t\t\t\tputs \'\'rescue\'\'\r\n\t\t\tend\r\n\t\t");
+      Assert.assertNotNull(result);
+      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void loadModelTest3() {
+    try {
+      final Model result = this.parseHelper.parse("\r\n\t\t\tbegin\r\n\t\t\t\tputs \'\'begin\'\'\r\n\t\t\trescue\r\n\t\t\t\tputs \'\'rescue\'\'\r\n\t\t\tensure\r\n\t\t\t\tputs \'\'ensure\'\'\r\n\t\t\tend\r\n\t\t");
+      Assert.assertNotNull(result);
+      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void loadModelTest4() {
+    try {
+      final Model result = this.parseHelper.parse("\r\n\t\t\tbegin\r\n\t\t\t\tputs \'\'begin1\'\'\r\n\t\t\t\tbegin\r\n\t\t\t\t\tputs \'\'begin2\'\'\r\n\t\t\t\trescue\r\n\t\t\t\t\tputs \'\'rescue1\'\'\r\n\t\t\t\tensure\r\n\t\t\t\t\tputs \'\'ensure1\'\'\r\n\t\t\t\tend\r\n\t\t\trescue\r\n\t\t\t\tputs \'\'rescue2\'\'\r\n\t\t\tensure\r\n\t\t\t\tputs \'\'ensure2\'\'\r\n\t\t\tend\r\n\t\t");
+      Assert.assertNotNull(result);
+      Resource.Diagnostic _get = result.eResource().getErrors().get(0);
+      String _plus = ("Erro: " + _get);
+      System.out.println(_plus);
+      Assert.assertTrue(result.eResource().getErrors().isEmpty());
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void loadModelTest5() {
+    try {
+      final Model result = this.parseHelper.parse("\r\n\t\t\tbegin\r\n\t\t\t\tputs \'\'begin1\'\'\r\n\t\t\t\tbegin\r\n\t\t\t\t\tputs \'\'begin2\'\'\r\n\t\t\t\trescue\r\n\t\t\t\t\tputs \'\'rescue1\'\'\r\n\t\t\t\tensure\r\n\t\t\t\t\tputs \'\'ensure1\'\'\r\n\t\t\t\tend\r\n\t\t\trescue\r\n\t\t\t\tputs \'\'rescue2\'\'\r\n\t\t\t\tbegin\r\n\t\t\t\t\tputs \'\'begin3\'\'\r\n\t\t\t\trescue\r\n\t\t\t\t\tputs \'\'rescue3\'\'\r\n\t\t\t\tensure\r\n\t\t\t\t\tputs \'\'ensure2\'\'\r\n\t\t\t\tend\r\n\t\t\tensure\r\n\t\t\t\tputs \'\'ensure3\'\'\r\n\t\t\t\tbegin\r\n\t\t\t\t\tputs \'\'begin4\'\'\r\n\t\t\t\trescue\r\n\t\t\t\t\tputs \'\'rescue4\'\'\r\n\t\t\t\tensure\r\n\t\t\t\t\tputs \'\'ensure4\'\'\r\n\t\t\t\tend\r\n\t\t\tend\r\n\t\t");
+      Assert.assertNotNull(result);
+      Resource.Diagnostic _get = result.eResource().getErrors().get(0);
+      String _plus = ("Erro: " + _get);
+      System.out.println(_plus);
       Assert.assertTrue(result.eResource().getErrors().isEmpty());
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);

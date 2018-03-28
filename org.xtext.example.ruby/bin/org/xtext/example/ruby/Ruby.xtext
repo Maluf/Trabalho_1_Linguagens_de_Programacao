@@ -6,13 +6,20 @@ Model:
 	begin+=Begin*;
 	
 Begin:
-	'begin' COMMANDS? (Begin | Rescue | Ensure)? End;
+	'begin' (COMMANDS? | BigExpression?) End;
 
 Rescue:
-	'rescue' COMMANDS? (Begin | Rescue | Ensure)?;
+	'rescue' (COMMANDS? | BigExpression?);
 	
 Ensure:
-	'ensure' COMMANDS? (Begin | Rescue | Ensure)?;
+	'ensure' (Begin? | COMMANDS?);
+
+BigExpression:
+	('begin' SmallExpression ((End Begin | Rescue | Ensure)) | (Begin | Rescue | Ensure End)) | ((((End Begin | Rescue | Ensure)) | ((Begin | Rescue | Ensure) End)) 'begin' Begin 'end')
+;
+
+SmallExpression:
+	(Rescue | Ensure);
 
 End:
 	'end';	
